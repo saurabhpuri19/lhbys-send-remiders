@@ -1,7 +1,7 @@
-# Task Reminder Cron Job
+# Light House - Assinged Task Reminder Job
 
-Sends daily email reminders to clients for tasks that are **not yet past their due date**.
-Runs for **free** using GitHub Actions (2,000 free minutes/month on the free plan).
+The cron job sends daily email reminders to clients for tasks that are **not yet past their due date**. 
+The job executes using GitHub Actions (2,000 free minutes/month on the free plan) and no cost involved.
 
 ---
 
@@ -16,19 +16,20 @@ your-repo/
 │       └── send_task_reminder.yml # GitHub Actions cron schedule
 └── README.md
 ```
-
 ---
 
-## 🗄️ Expected Supabase Schema
+## 🗄 Supabase Database
 
-### `client_tbl`
+### "client_tbl" Table Schema
+
 | Column         | Type   | Notes                  |
 |----------------|--------|------------------------|
 | `client_id`    | int / text | **Primary Key**    |
 | `client_email` | text   | Recipient email address |
 | *(other cols)* | —      | Optional               |
 
-### `task_tbl`
+### "task_tbl" Table Schema
+
 | Column              | Type   | Notes                                             |
 |---------------------|--------|---------------------------------------------------|
 | `task_id`           | int    | Primary Key                                       |
@@ -65,23 +66,17 @@ Go to your repo → **Settings → Secrets and variables → Actions → New rep
 
 ### 3 · Adjust the Schedule (optional)
 
-Edit `.github/workflows/task_reminder.yml`:
+Edit file in location in code base to update cron timings: .github/workflows/task_reminder.yml
+
 ```yaml
 - cron: "15 1 * * *"   # 01:15 UTC = 6:15 IST | Due to high volumes of Github Actions are delayed from their cron time.
 ```
 Use [crontab.guru](https://crontab.guru) to build your preferred time.
 
-### 4 · Test it manually
+### 4 · Test job manually
 
-GitHub → **Actions tab** → `Daily Task Reminder` → **Run workflow** → Watch the logs.
+GitHub → **Actions tab** → `Daily Task Reminder` → **Run workflow** (Job triggers immediately) → Watch the logs.
 
-Don't wait for the daily schedule — trigger it immediately:
-
-Click the "Actions" tab in your repo
-Click "Daily Task Reminder" on the left
-Click "Run workflow" → "Run workflow" (green button)
-Click the running job to watch the live logs
-You should see ✅ Sent to client@email.com in the output
 ---
 
 ## 🔐 Security Notes
@@ -89,5 +84,6 @@ You should see ✅ Sent to client@email.com in the output
 - Use the **`service_role`** Supabase key so Row Level Security (RLS) doesn't block reads.
 - **Never** commit secrets to the repo. GitHub Secrets are encrypted at rest.
 - The Gmail App Password only grants Mail access, not full account access.
-
+- 
 ---
+
