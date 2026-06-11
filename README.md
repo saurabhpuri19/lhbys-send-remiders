@@ -84,6 +84,6 @@ GitHub → **Actions tab** → `Daily Task Reminder` → **Run workflow** (Job t
 - Use the **`service_role`** Supabase key so Row Level Security (RLS) doesn't block reads.
 - **Never** commit secrets to the repo. GitHub Secrets are encrypted at rest.
 - The Gmail App Password only grants Mail access, not full account access.
-- 
+
 ---
 
