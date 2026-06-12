@@ -81,7 +81,7 @@ def build_email(to_address: str, task: dict) -> MIMEMultipart:
   <body style="font-family:Arial,sans-serif;color:#333;padding:20px;">
         <h2 style="color:#d9534f;">Task Reminder</h2>
     <p>Hello,</p>
-    <p>This is a friendly reminder that the following task is due soon:</p>
+    <p>Please be reminded that the following task has been assigned to you & is due soon:</p>
     <table style="border-collapse:collapse;width:100%;max-width:500px;">
       <tr style="background:#f5f5f5;">
         <td style="padding:8px 12px;border:1px solid #ddd;"><strong>Task Due Date</strong></td>
@@ -92,7 +92,7 @@ def build_email(to_address: str, task: dict) -> MIMEMultipart:
       {desc_row}
     </table>
     <br>
-    <p>Please complete it before the due date. Let us know in case of assistance is needed.</p>
+    <p>PPlease ensure the task is completed by the due date. If you require any assistance or have questions, feel free to reach out.</p>
     <p style="color:#000;font-size:12px;">Thanks,<br>Light House by Sahibaa Singh</p>
   </body>
 </html>
