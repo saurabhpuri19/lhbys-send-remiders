@@ -86,6 +86,8 @@ GitHub → **Actions tab** → `Daily Task Reminder` → **Run workflow** (Job t
 - The Gmail App Password only grants Mail access, not full account access.
 
 ---
-##  Email Example - Which goes out to clients
+##  Email Example - 
+
+Email screenshot which is sent to the clients by the cron job.
 <img width="1157" height="507" alt="Screenshot 2026-06-12 at 1 41 23 pm" src="https://github.com/user-attachments/assets/1a3d9840-4b27-414c-a389-a89712817d4d" />
 
