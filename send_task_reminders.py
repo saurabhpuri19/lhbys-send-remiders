@@ -57,16 +57,16 @@ def build_email(to_address: str, task: dict) -> MIMEMultipart:
     task_desc     = task.get("task_description", "")
 
     msg = MIMEMultipart("alternative")
-    msg["Subject"] = f"Task Reminder (Light House by Sahibaa Singh) | Task Assigned is due on {task_due_date}"
+    msg["Subject"] = f"Task Reminder | Task Due on {task_due_date} | Light House by Sahibaa Singh ⭐"
     msg["From"]    = GMAIL_USER
     msg["To"]      = to_address
 
     plain = (
         f"Hello,\n\n"
-        f"This is a friendly reminder that the following task is due soon:\n\n"
+        f"This is a friendly reminder that the following task is approaching its due date:\n\n"
         f"  Task Due Date  : {task_due_date}\n"
         f"  Task Assigned   : {task_desc}\n\n"
-        f"Please complete it before the due date.\n\n"
+        f"Please ensure the task is completed by the due date. If you require any assistance, feel free to reach out—we’re happy to help.\n\n"
         f"Thanks,\nLight House by Sahibaa Singh"
     )
 
@@ -79,20 +79,20 @@ def build_email(to_address: str, task: dict) -> MIMEMultipart:
     html = f"""
 <html>
   <body style="font-family:Arial,sans-serif;color:#333;padding:20px;">
-        <h2 style="color:#d9534f;">Task Reminder</h2>
+        <h2 style="color:#B91C1C;">Task Reminder</h2>
     <p>Hello,</p>
-    <p>Please be reminded that the following task has been assigned to you & is due soon:</p>
+    <p>This is a friendly reminder that the following task is approaching its due date:</p>
     <table style="border-collapse:collapse;width:100%;max-width:500px;">
       <tr style="background:#f5f5f5;">
         <td style="padding:8px 12px;border:1px solid #ddd;"><strong>Task Due Date</strong></td>
-        <td style="padding:8px 12px;border:1px solid #ddd;color:#d9534f;">
+        <td style="padding:8px 12px;border:1px solid #ddd;color:#B91C1C;">
           <strong>{task_due_date}</strong>
         </td>
       </tr>
       {desc_row}
     </table>
     <br>
-    <p>PPlease ensure the task is completed by the due date. If you require any assistance or have questions, feel free to reach out.</p>
+    <p>Please ensure the task is completed by the due date. If you require any assistance, feel free to reach out—we’re happy to help.</p>
     <p style="color:#000;font-size:12px;">Thanks,<br>Light House by Sahibaa Singh</p>
   </body>
 </html>
@@ -115,14 +115,14 @@ def send_emails(messages: list[tuple[str, MIMEMultipart]]) -> None:
 
 
 def main() -> None:
-    print(f"Running task reminder for {TODAY}")
+    print(f"Running task reminder for {TODAY}...")
     sb = get_supabase_client()
 
     tasks = fetch_pending_tasks(sb)
-    print(f"   Found {len(tasks)} pending task(s).")
+    print(f"Found {len(tasks)} pending task(s)...")
 
     if not tasks:
-        print("   Nothing to do. Exiting.")
+        print("   Nothing to do. Exiting...")
         return
 
     all_client_ids: set[str] = set()
